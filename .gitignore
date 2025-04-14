@@ -1,0 +1,9 @@
+node_modules/
+.cache/
+.nvm/
+.vscode-server/
+.bash_history/
+.wget-hsts/
+node_/
+
+
