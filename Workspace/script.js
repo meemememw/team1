@@ -6,9 +6,9 @@ function signup() {
   const name = document.getElementById("signup-name").value;
   const email = document.getElementById("signup-email").value;
 
-  if (id && pw && name && email) {
-    fetch('/user/signup', {
-      method: 'POST',
+  if (id && pw && name && email) {//&&true
+    fetch('/user/signup', { //fetch() 괄호안은 엔드포인트\
+      method: 'POST',//클라이언트로부터 회원가입 요청을 받는것. 이 요청에는 아이디 비밀번호 이름 이메일등의 회원정보
       headers: {
         'Content-Type': 'application/json',
       },
@@ -41,7 +41,7 @@ function clearSignupForm() {
 }
 
 function fetchMemberList() {
-  fetch('/user/list')
+  fetch('/ubuntu08/api/v1/user/list') //url오류
     .then(response => response.json())
     .then(data => {
       const memberSelect = document.getElementById("member-select");

@@ -21,7 +21,7 @@ router.post('/signup', (req, res) => {
 });
 
 // 회원 목록 조회 API (GET /user/list)
-router.get('/list', (req, res) => {
+router.get('/ubuntu08/api/vi/', (req, res) => {
   const memberList = Object.keys(users).map(id => ({ id, name: users[id].name }));
   res.json(memberList);
 });

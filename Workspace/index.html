@@ -3,57 +3,98 @@
 <head>
     <title>간단 회원 관리</title>
     <style>
-        body { font-family: sans-serif; }
-        #signup-form, #member-list, #member-detail, #update-form { margin-bottom: 20px; border: 1px solid #ccc; padding: 15px; }
-        label { display: block; margin-bottom: 5px; }
-        input[type="text"], input[type="password"], button, select { padding: 8px; margin-bottom: 10px; }
-        #member-detail span { display: block; margin-bottom: 5px; }
+        body { font-family: sans-serif; margin: 20px; }
+        h2 { margin-top: 30px; }
+        #signup-form, #member-list-section, #member-detail-section, #update-form-section {
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            padding: 15px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input[type="text"], input[type="password"], button, select {
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            box-sizing: border-box;
+            width: calc(100% - 22px); /* padding, border 제외 */
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #member-detail span { display: block; margin-bottom: 8px; }
+        #member-detail strong { font-weight: bold; }
+        #update-form { display: none; }
+        .error-message { color: red; font-size: 0.9em; margin-top: 5px; }
     </style>
 </head>
 <body>
 
-    <h2>회원 가입</h2>
-    <div id="signup-form">
-        <label for="signup-id">아이디:</label>
-        <input type="text" id="signup-id"><br>
-        <label for="signup-pw">비밀번호:</label>
-        <input type="password" id="signup-pw"><br>
-        <label for="signup-name">이름:</label>
-        <input type="text" id="signup-name"><br>
-        <label for="signup-email">이메일:</label>
-        <input type="text" id="signup-email"><br>
-        <button onclick="signup()">가입</button>
-    </div>
+    <h1>간단 회원 관리</h1>
 
-    <h2>회원 목록</h2>
-    <div id="member-list">
-        <select id="member-select" onchange="showMemberDetail()">
-            <option value="">-- 선택하세요 --</option>
-        </select>
-    </div>
+    <section id="signup-form-section">
+        <h2>회원 가입</h2>
+        <div id="signup-form">
+            <label for="signup-id">아이디:</label>
+            <input type="text" id="signup-id"><br>
+            <label for="signup-pw">비밀번호:</label>
+            <input type="password" id="signup-pw"><br>
+            <label for="signup-name">이름:</label>
+            <input type="text" id="signup-name"><br>
+            <label for="signup-email">이메일:</label>
+            <input type="text" id="signup-email"><br>
+            <button onclick="signup()">가입</button>
+            <p id="signup-message" class="error-message"></p>
+        </div>
+    </section>
 
-    <h2>회원 정보</h2>
-    <div id="member-detail">
-        <span id="detail-id"></span>
-        <span id="detail-name"></span>
-        <span id="detail-email"></span>
-        <button onclick="showUpdateForm()">수정</button>
-        <button onclick="deleteMember()">탈퇴</button>
-    </div>
+    <section id="member-list-section">
+        <h2>회원 목록</h2>
+        <div id="member-list">
+            <select id="member-select" onchange="showMemberDetail()">
+                <option value="">-- 선택하세요 --</option>
+            </select>
+        </div>
+    </section>
 
-    <h2>회원 정보 수정</h2>
-    <div id="update-form" style="display:none;">
-        <label for="update-id">아이디:</label>
-        <input type="text" id="update-id" readonly><br>
-        <label for="update-pw">새 비밀번호:</label>
-        <input type="password" id="update-pw"><br>
-        <label for="update-name">새 이름:</label>
-        <input type="text" id="update-name"><br>
-        <label for="update-email">새 이메일:</label>
-        <input type="text" id="update-email"><br>
-        <button onclick="updateMemberInfo()">수정 완료</button>
-        <button onclick="hideUpdateForm()">취소</button>
-    </div>
+    <section id="member-detail-section">
+        <h2>회원 정보</h2>
+        <div id="member-detail" style="display:none;">
+            <span id="detail-id"><strong>아이디:</strong> </span>
+            <span id="detail-name"><strong>이름:</strong> </span>
+            <span id="detail-email"><strong>이메일:</strong> </span>
+            <button onclick="showUpdateForm()">수정</button>
+            <button onclick="deleteMember()">탈퇴</button>
+            <p id="detail-message" class="error-message"></p>
+        </div>
+    </section>
+
+    <section id="update-form-section">
+        <h2>회원 정보 수정</h2>
+        <div id="update-form" style="display:none;">
+            <label for="update-id">아이디:</label>
+            <input type="text" id="update-id" readonly><br>
+            <label for="update-pw">새 비밀번호:</label>
+            <input type="password" id="update-pw"><br>
+            <label for="update-name">새 이름:</label>
+            <input type="text" id="update-name"><br>
+            <label for="update-email">새 이메일:</label>
+            <input type="text" id="update-email"><br>
+            <button onclick="updateMemberInfo()">수정 완료</button>
+            <button onclick="hideUpdateForm()">취소</button>
+            <p id="update-message" class="error-message"></p>
+        </div>
+    </section>
 
     <script src="script.js"></script>
 
