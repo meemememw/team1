@@ -43,3 +43,40 @@ su
 su
 su
 su
+node server.js
+cd /home/team1/Workspace
+cd ../
+su
+sudo systemctl start postgresql
+su
+psql
+sudo su -u postgres
+sudo su - postgres
+sudo systemctl start postgresql
+sudo systemctl start postgresql
+su
+su
+psql
+su
+su
+su
+psql
+brew install postgresql
+sudo apt update
+sudo apt install
+su
+su
+lx
+ls
+cd Workspace
+node server.js
+cd ../
+ls
+cd 
+cd Workspace
+node server.js
+cd ../
+node server.js
+su
+su
+su

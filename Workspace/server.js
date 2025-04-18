@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const port = 8800;
 const cors = require('cors');
-const pool = require('./db');
+const { pool, testConnection } = require('./db.js');
 
 app.use(cors());
 app.use(express.json());
@@ -15,7 +15,7 @@ app.get('/home', (req, res) => {
   res.sendFile(__dirname + '/index.html');
 })
 
-app.get('/ubuntu08/api/vi/', async (req, res)=> {
+app.get('/ubuntu08/api/v1/', async (req, res)=> {
   try {
     const result = await pool.query('SELECT * FROM users');
     res.json(result.rows);
@@ -27,8 +27,17 @@ app.get('/ubuntu08/api/vi/', async (req, res)=> {
   }
 });
 
-app.listen(port, () => {
-  console.log(`server Start at ${port} port`);
-});
+// 서버 시작 시 DB 연결 테스트
+async function startServer() {
+  const isConnected = await testConnection();
+  if (isConnected) {
+    app.listen(port, () => {
+      console.log(`Server running at port ${port}`);
+    });
+  } else {
+    console.error('Server not started due to database connection issues');
+  }
+}
 
+startServer();
 

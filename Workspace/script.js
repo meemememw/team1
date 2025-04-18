@@ -9,13 +9,13 @@ function signup() {
   if (id && pw && name && email) {//&&true
     fetch('/user/signup', { //fetch() 괄호안은 엔드포인트\
       method: 'POST',//클라이언트로부터 회원가입 요청을 받는것. 이 요청에는 아이디 비밀번호 이름 이메일등의 회원정보
-      headers: {
+      headers: { //요청본문에 담긴 데이터의 형식을 알려줌 
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ id, password: pw, name, email }),
+      body: JSON.stringify({ id, password: pw, name, email }), //요청의 본문을 데이터에 담아서 서버로 보냄
     })
-    .then(response => response.json())
-    .then(data => {
+    .then(response => response.json()) //첫번째 then은 성공됬을때 실행
+    .then(data => { //두번쨰 then은 json 파싱 프로미스가 성공 했을 때 실행되며 파싱된 자바스크립트 객체 data를 받습니다 data는 더이상 프로미스가 아닙니다
       if (response.ok) {
         alert(data.message);
         fetchMemberList();
@@ -50,10 +50,10 @@ function fetchMemberList() {
         const option = document.createElement("option");
         option.value = member.id;
         option.textContent = `${member.id} (${member.name})`;
-        memberSelect.appendChild(option);
+        memberSelect.appendChild(option);//멤버 셀렉트 끝으로
       });
-      hideMemberDetail();
-      hideUpdateForm();
+      hideMemberDetail(); //스타일에서 none 값 출력함
+      hideUpdateForm(); //마찬가지지
     })
     .catch(error => {
       console.error('회원 목록 조회 오류:', error);
@@ -91,7 +91,7 @@ function showMemberDetail() {
 
 function hideMemberDetail() {
   document.getElementById("member-detail").style.display = "none";
-}
+}//안보이게함
 
 function showUpdateForm() {
   const memberId = document.getElementById("member-select").value;
@@ -102,7 +102,7 @@ function showUpdateForm() {
         if (response.ok) {
           document.getElementById("update-pw").value = data.password || ''; // 비밀번호가 없을 수도 있으므로 처리
           document.getElementById("update-name").value = data.name;
-          document.getElementById("update-email").value = data.email;
+          document.getElementById("update-email").value = data.email;1111
           document.getElementById("update-form").style.display = "block";
         } else {
           alert(data.message);
